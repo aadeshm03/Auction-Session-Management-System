@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- This meta tag ensures that the website renders correctly across different device sizes, enhancing mobile responsiveness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to the external CSS stylesheet. Uncomment if you wish to customize or add styling. -->
+    <!-- <link rel="stylesheet" href="styles.css">   -->
+
+    <title>Database Application</title>
+</head>
+
+<body>
+    <!-- ===================================================================================== -->
+    <!-- Display the current status of the database connection. 
+         !!HERE TO HELP U DEBUGGING, NOT REQUIRED IN YOUR OWN PROJECT!!
+         -->
+    <h1>Database Connection Status:
+        <!-- An in-line placeholder to display connection status. -->
+        <span id="dbStatus"> </span>
+        <!-- A loading GIF, will be hided once get the status. -->
+        <img id="loadingGif" class="loading-gif" src="loading_100px.gif" alt="Loading...">
+    </h1>
+
+    <br>
+    <hr><br> <!-- ========================================================================= -->
+
+    <br>
+    <h2>Show Items_Sells</h2>
+    <table id="Items_SellsTable" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>itemID</th>
+                <th>category</th>
+                <th>startDate</th>
+                <th>CreditCardNumber</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+<!-- 
+    <br>
+    <h2>Show ForSaleItems_ListedAt_Wins</h2>
+    <table id="ForSaleItems_ListedAt_WinsTable" border="1">
+        <thead>
+            <tr>
+               
+                <th>itemID</th>
+                <th>listed_date</th>
+                <th>time</th>
+                <th>address</th>
+                <th>creditCardNumber</th>
+                <th>startPrice</th>
+                <th>finalPrice</th>
+                <th>condition</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br> -->
+    <hr><br> <!-- ========================================================================= -->
+
+
+    <h2>Reset Items_Sells</h2>
+    <p>If you wish to reset the table press on the reset button. If this is the first time you're running this page, you
+        MUST use reset</p>
+    <button id="resetItems_SellsTable"> reset </button> <br>
+    <!-- A placeholder to display messages related to the reset operation. -->
+    <div id="resetItems_SellsResultMsg"></div>
+<!-- 
+    <br>
+    <h2>Reset ForSaleItems_ListedAt_Wins</h2>
+    <p>If you wish to reset the table press on the reset button. If this is the first time you're running this page, you
+        MUST use reset</p>
+    <button id="resetForSaleItems_ListedAt_WinsTable"> reset </button> <br>
+    <div id="resetForSaleItems_ListedAt_WinsResultMsg"></div>
+
+    <br> -->
+    <hr><br> <!-- ========================================================================= -->
+
+    <h2> INSERT Item into Item_Sells Table </h2>
+    <form id="insertItems_SellsForm">
+        ID: <input type="number" id="insertItems_SellsItemId" placeholder="Enter Item ID" required> <br><br>
+        Category:
+        <select id="insertItems_SellsCategory">
+            <option value="Furniture"> Furniture </option>
+            <option value="Art"> Art </option>
+            <option value="Electronics"> Electronics </option>
+            <option value="Antiques"> Antiques </option>
+            <option value="Collectibles"> Collectibles </option>
+        </select> <br><br>
+
+        Start Date: <input type="date" id="insertItems_SellsStartDate" placeholder="Enter Start Date" maxlength="20">
+        <br><br>
+        Credit Card #: <input type="number" id="insertItems_SellsCreditCardNumber" placeholder="Enter Credit Card #"
+            maxlength="20" required>
+        <br><br>
+
+        <button type="submit"> insert </button> <br>
+    </form>
+    <div id="insertItem_SellsResultMsg"></div>
+
+    <br>
+    <hr><br> <!-- ========================================================================= -->
+<!-- 
+    <h2> INSERT Item into ForSaleItems_ListedAt_Wins Table </h2>
+    <form id="insertForSaleItems_ListedAt_WinsForm">
+        ID: <input type="number" id="insertForSaleItems_ListedAt_WinsItemId" placeholder="Enter Item ID" required>
+        <br><br>
+        Date: <input type="date" id="insertForSaleItems_ListedAt_WinsDate" placeholder="Enter Date It Got listed"
+            maxlength="20" required>
+        <br><br>
+        Time: <input type="text" id="insertForSaleItems_ListedAt_WinsTime" placeholder="Enter Time It Got Listed"
+            maxlength="5" required> <br><br>
+        Address: <input type="text" id="insertForSaleItems_ListedAt_WinsAddress"
+            placeholder="Enter Address of Auction Session" required> <br><br>
+        Start Price: <input type="number" id="insertForSaleItems_ListedAt_WinsStartPrice"
+            placeholder="Enter Start Price" maxlength="20"> <br><br>
+        Final Price: <input type="number" id="insertForSaleItems_ListedAt_WinsFinalPrice"
+            placeholder="Enter Final Price (if sold)" maxlength="20"> <br><br>
+        Credit Card #: <input type="number" id="insertForSaleItems_ListedAt_WinsCreditCardNumber"
+            placeholder="Enter Credit Card #" maxlength="20"><br><br>
+        Condition:
+        <select id="insertForSaleItems_ListedAt_WinsCategory">
+            <option value="New"> New </option>
+            <option value="Used"> Used </option>
+            <option value="Refurbished"> Refurbished </option>
+            <option value="Damaged"> Damaged </option>
+            <option value="Open Box"> Open Box </option>
+        </select> <br><br>
+
+        <button type="submit"> insert </button> <br>
+    </form>
+    <div id="insertForSaleItems_ListedAt_WinsResultMsg"></div> -->
+
+    <h2>DELTE an item on Sale </h2>
+    <form id="deleteItems_SellsForm">
+        Item Id: <input type="text" id="deleteItemId" placeholder="Enter Item Id" required> <br><br>
+
+        <button type="submit"> delete </button> <br>
+    </form>
+    <!-- A placeholder to display messages related to the delete operation. -->
+    <div id="updateDeleteItems_SellsMsg"></div>
+
+    <br>
+    <hr><br> <!-- ========================================================================= -->
+
+    <h2> SELECT Vehicle from Delivery Vehicles </h2>
+    <form id="selectDeliveryVehicleForm">
+        <p>The values are case sensitive</p>
+        <input type="text" id="selectPlate" placeholder="Enter License Plate" maxlength="6"><br><br>
+        <select id="AndOrPlate/Load">
+            <option value="OR"> OR </option>
+            <option value="AND"> AND </option>
+        </select>
+        <br><br>
+        Payload
+        <select id="comparisonOperatorDropdown">
+            <option value="=">=</option>
+            <option value="lessThan"> &lt </option>
+            <option value=">"> &gt </option>
+        </select>
+        <input type="number" id="selectPayload" placeholder="Enter Payload" required> <br><br>
+        <select id="AndOrLoad/Make">
+            <option value="OR"> OR </option>
+            <option value="AND"> AND </option>
+        </select>
+        <br><br>
+        MakeModel:
+        <select id="selectMakeModel">
+            <option value="Ford Transit"> Ford Transit </option>
+            <option value="Mercedes Sprinter"> Mercedes Sprinter </option>
+            <option value="Ram ProMaster"> Ram ProMaster </option>
+            <option value="Nissan NV3500"> Nissan NV3500 </option>
+        </select> <br><br>
+
+
+        <button type="submit"> Select </button> <br>
+
+    </form>
+    <div id="selectResultMsg"></div>
+    <br>
+    <h2>Show Selected Items</h2>
+    <table id="Items_SellsSelectTable" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>licensePlate</th>
+                <th>makeModel</th>
+                <th>payLoad</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br>
+
+    <br>
+    <hr><br> <!-- ========================================================================= -->
+    <h2> PROJECTION Auctioneer Information</h2>
+    <!-- Form for projection -->
+    <form id="employeeProjectionForm">
+
+        <!-- Checkboxes for attributes -->
+        <fieldset>
+            <legend>Select Attributes:</legend>
+            <label>
+                <input type="checkbox" id="StartDate">
+                Start Date
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="EmployeeId">
+                Employee ID
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="HourlyWage">
+                Hourly Wage
+            </label>
+            <br>
+            <label>
+                <input type="checkbox" id="AuctioneerName">
+                Auctioneer Name
+            </label>
+        </fieldset>
+        <br>
+
+        <button type="submit">Submit Projection</button>
+    </form>
+
+    <!-- Placeholder for displaying the selected attributes -->
+    <div id="projectionResult"></div>
+    <!-- Results Table -->
+    <table id="AuctioneerAttributesTable" border="1">
+        <thead>
+            <tr id="AuctioneerAttributesHeader"></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <hr><br> <!-- ========================================================================= -->
+
+    <h2>JOIN Appraiser and Appraises</h2>
+    <p>Display all itemIDs appraised by the input appraiserID</p>
+    <form id="join_Appraiser_And_Appraises_Form">
+        AppraiserID: <input type="text" id="appraiserID" placeholder="Enter Appraiser ID" required>
+        <br><br>
+        <button type="submit">Join</button>
+    </form>
+
+    <!-- Placeholder to display messages -->
+    <div id="joinResultMsg"></div>
+
+    <!-- Results Table -->
+    <table id="resultsTable" border="1" style="display:none;">
+        <thead>
+            <tr>
+                <th>Appraiser Name</th>
+                <th>ItemID</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <br>
+    <hr><br> <!-- ========================================================================= -->
+    <h2>AGGREGATION WITH GROUP BY By Operation</h2>
+    <p>Find Max Bid of input ItemID</p>
+    <form id="max_bid_form">
+        ITEMID: <input type="text" id="itemID" placeholder="Enter ITEMID" required>
+        <br><br>
+        <button type="submit">Get Max Bid</button>
+    </form>
+
+    <!-- Placeholder to display messages -->
+    <div id="maxBidResultMsg"></div>
+
+    <!-- Results Table -->
+    <table id="maxBidResultsTable" border="1" style="display:none;">
+        <thead>
+            <tr>
+                <th>ItemID</th>
+                <th>Max Bid</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+    <hr><br> <!-- ========================================================================= -->
+    <h2> AGGREGATION WITH HAVING: Find Address and Phone Number combination where at least a certain amount of items have been sold   </h2>
+    <form id="selectAuctionSession_OperatesForm">
+        <br><br>
+        <input type="number" id="insertNumber" placeholder="Enter Minimum Number" maxlength="20">
+        <br><br>
+        <button type="submit"> Select </button> <br>
+    </form>
+    <div id="selectResultMsg"></div>
+    <br>
+    <h2>Show Selected Sessions</h2>
+    <table id="selectedAuctionSessionsTable" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>address</th>
+                <th>phoneNumber</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <hr><br>
+    <!-- ===================================================================================== -->
+    <h2>NESTED AGGREGATION BY GROUP BY: Find days with a higher commission percent than average</h2>
+
+    <form id="comissionPercentForm">
+        <button type="submit">Get</button>
+    </form>
+
+    <table id="comissionPercentAuctionSessionsTable" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>event_date</th>
+                <th>average commission percent</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+    <hr><br>
+    <!-- ===================================================================================== -->
+
+
+    <h2>AuctionSession Table</h2>
+    <table id="updateAuctionSessionTable" border="1">
+        <thead>
+            <tr>
+                <th>Event Date</th>
+                <th>Time</th>
+                <th>Address</th>
+                <th>Employee Id </th>
+                <th>Phone Number</th>
+                <th>Number of Items</th>
+                <th>Commission Percent</th>
+                <th>Total Attendees</th>
+            </tr>
+        </thead>
+            <tbody></tbody>
+    </table>
+
+    <h2>UPDATE Auction Session</h2>
+    <form id="updateAuctionSessionForm">
+        <!-- Primary Key Fields to Locate the Record -->
+        <h3>Enter Session Information to Update</h3>
+
+        <label for="pkDate">Date:</label>
+        <input type="date" id="pkDate" required>
+        <br><br>
+
+        <label for="pkTime">Time:</label>
+        <input type="text" id="pkTime" required>
+        <br><br>
+
+        <label for="pkAddress">Address:</label>
+        <input type="text" id="pkAddress" placeholder="Enter Address" required>
+        <br><br>
+
+        <!-- Updatable Fields -->
+        <h3>Fields to Update</h3>
+        Update Total Attendees: <input type="number" id="updateTotalAttendees" placeholder="Enter New Total Attendees"><br>
+        Update EmployeeId: <input type="number" id="updateEmployeeId" placeholder="Enter New EmployeeId" required><br>
+        Update Phone Number: <input type="number" id="updatePhoneNumber" placeholder="Enter New Phone Number"><br>
+        Update Number of Items: <input type="number" id="updateNumItems" placeholder="Enter New Number of Items"><br>
+        Update Commission Percent: <input type="number" id="updateCommissionPercent" placeholder="Enter New Commission Percent"><br>
+        <br>
+        <button type="submit">Submit Updates</button>
+    </form>   
+    <!-- A placeholder to display messages related to the update operation. -->
+    <div id="updateAuctionSessionResultMsg"></div>
+    <br>
+    <hr><br> <!-- ========================================================================= -->
+
+    <h2>DIVISION Operation</h2>
+    <p>Get All Delivery Vehicle that has been to every Storage Facility by dividing CollectsFrom and StorageFacility
+        table</p>
+    <form id="divisionQueryForm">
+        <button type="submit">Find Vehicles</button>
+    </form>
+    <!-- A placeholder to display messages related to the division operation. -->
+    <div id="divisionResultMsg"></div>
+    <!-- Results Table -->
+    <table id="divisionQuery" border="1" style="display:none;">
+        <thead>
+            <tr>
+                <th>licensePlate</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <br>
+    <hr><br> <!-- ========================================================================= -->
+
+
+    <!-- External JavaScript file that contains the functionality/logic for the operations above. -->
+    <script src="scripts.js"></script>
+
+
+
+</body>
+
+</html>
